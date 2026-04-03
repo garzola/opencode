@@ -1,63 +1,72 @@
 {
-  "$schema": "https://opencode.ai/config.json",
-  "model": "google-vertex/gemini-3.1-pro-preview",
-  "small_model": "google-vertex/gemini-2.5-flash",
-  "enabled_providers": ["google-vertex", "openrouter", "anthropic"],
-  // "enabled_models": {
-  //   "google-vertex": ["gemini-3*", "gemini-2*"],
-  //   "openrouter": [
-  //     "gpt-5.*-codex-*",
-  //     "claude-sonnet-4-5*",
-  //     "grok-code-fast*",
-  //     "glm-4.7",
-  //   ],
-  // },
-  "provider": {
-    "google-vertex": {
-      "models": {
-        "gemini-2.5-flash": {
-          "temperature": true,
-        },
-        "gemini-2.5-pro": {
-          "temperature": true,
-        },
-        "gemini-3.1-pro-preview": {
-          "temperature": true,
-        },
-      },
-      "options": {
-        "project": "{env:VERTEXAI_PROJECT_ID}",
-        "location": "{env:VERTEXAI_REGION}",
-      },
+    "$schema": "https://opencode.ai/config.json",
+    "model": "qwen3-coder-next:q4_K_M",
+    "small_model": "devstral-small-2:24b",
+    "enabled_providers": [
+        "ollama"
+    ],
+    "provider": {
+        "ollama": {
+            "models": {
+                "qwen3-coder-next:q4_K_M": {
+                    "_launch": true,
+                    "name": "qwen3-coder-next:q4_K_M",
+                    "cost": {
+                        "input": 0.03,
+                        "output": 0.15,
+                        "cache_read": 0.1
+                    }
+                },
+                "devstral-small-2:24b": {
+                    "_launch": true,
+                    "name": "devstral-small-2:24b",
+                    "cost": {
+                        "input": 0.03,
+                        "output": 0.15,
+                        "cache_read": 0.1
+                    }
+                }
+            },
+            "name": "Ollama",
+            "npm": "@ai-sdk/openai-compatible",
+            "options": {
+                "baseURL": "http://127.0.0.1:11434/v1"
+            }
+        }
     },
-    "anthropic": {
-      "models": {
-        "claude-opus-4-6": {
-          "temperature": true,
+    "model": "ollama/qwen3-coder-next:q4_K_M",
+    "default_agent": "devops-engineer",
+    "autoupdate": true,
+    "instructions": [
+        "rules/*.md"
+    ],
+    // WARNING: this is a security risk, do not share sessions with anyone automatically.
+    "share": "manual",
+    "plugin": [
+        "@franlol/opencode-md-table-formatter"
+    ],
+    "mcp": {
+        "context7": {
+            "type": "remote",
+            "url": "https://mcp.context7.com/mcp"
         },
-        "claude-sonnet-4-6": {
-          "temperature": true,
+        "filesystem": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "/home/gustavo/depots/github"
+            ]
         },
-        "claude-haiku-4-5": {
-          "temperature": true,
-        },
-      },
-      "options": {
-        "apiKey": "{env:ANTHROPIC_API_KEY}",
-      },
-    },
-  },
-  "default_agent": "plan",
-  "autoupdate": true,
-  "instructions": ["rules/*.md"],
-  // WARNING: this is a security risk, do not share sessions with anyone automatically.
-  "share": "manual",
-  "plugin": ["@franlol/opencode-md-table-formatter"],
-  "mcp": {
-    "smartplaylist": {
-      "type": "remote",
-      "url": "http://personal.local:8000/mcp",
-      "enabled": true,
-    },
-  },
+        "sequential-thinking": {
+            "command": "npx",
+            "args": [
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ]
+        }
+        "fetch": {
+            "command": "mcp-server-fetch"
+        }
+    }
 }
