@@ -1,0 +1,114 @@
+{
+    "$schema": "https://opencode.ai/config.json",
+    "model": "qwen3.5:35b-a3b-coding-nvfp4",
+    "small_model": "devstral-small-2:24b",
+    "enabled_providers": [
+        "ollama"
+    ],
+    "provider": {
+        "ollama": {
+            "name": "Ollama",
+            "npm": "@ai-sdk/openai-compatible",
+            "options": {
+                "baseURL": "http://gratik.scby.com:11434/v1"
+            },
+            "models": {
+                "qwen3.5:35b-a3b-coding-nvfp4": {
+                    "name": "Qwen 3.5 Coder (a3b 35b)",
+                    "cost": {
+                        "input": 0.03,
+                        "output": 0.15,
+                        "cache_read": 0.1
+                    }
+                },
+                "devstral-small-2:24b": {
+                    "name": "Devstral Small 2 (24b)",
+                    "cost": {
+                        "input": 0.03,
+                        "output": 0.15,
+                        "cache_read": 0.1
+                    }
+                },
+                "gemma4:e4b": {
+                    "name": "Gemma 4 (e4b)",
+                    "cost": {
+                        "input": 0.03,
+                        "output": 0.15,
+                        "cache_read": 0.1
+                    }
+                },
+                "gemma4:26b": {
+                    "name": "Gemma 4 (26b)",
+                    "cost": {
+                        "input": 0.03,
+                        "output": 0.15,
+                        "cache_read": 0.1
+                    }
+                },
+                "phi4-reasoning:14b": {
+                    "name": "Phi 4 Reasoning (14b)",
+                    "cost": {
+                        "input": 0.03,
+                        "output": 0.15,
+                        "cache_read": 0.1
+                    }
+                },
+                "codestral:22b": {
+                    "name": "Codestral (22b)",
+                    "cost": {
+                        "input": 0.03,
+                        "output": 0.15,
+                        "cache_read": 0.1
+                    }
+                },
+                "cogito:32b": {
+                    "name": "Cogito (32b)",
+                    "cost": {
+                        "input": 0.03,
+                        "output": 0.15,
+                        "cache_read": 0.1
+                    }
+                }
+            }
+        }
+    },
+    "default_agent": "devops-engineer",
+    "autoupdate": true,
+    "instructions": [
+        "rules/*.md"
+    ],
+    "mcp": {
+        "context7": {
+            "enabled": true,
+            "type": "remote",
+            "url": "https://mcp.context7.com/mcp"
+        },
+        "filesystem": {
+            "enabled": true,
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "@modelcontextprotocol/server-filesystem",
+                "/home/gustavo/.opencode",
+                "/home/gustavo/depots/github"
+            ]
+        },
+        "sequential-thinking": {
+            "enabled": true,
+            "type": "local",
+            "command": [
+                "npx",
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ]
+        },
+        "fetch": {
+            "enabled": true,
+            "type": "local",
+            "command": [
+                "mcp-server-fetch"
+            ]
+        }
+    }
+}
