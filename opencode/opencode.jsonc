@@ -6,7 +6,7 @@
     "username": "Gustavo",
     "agent": {
         "plan": {
-            "model": "ollama/gemma4:31b"
+            "model": "gemma4:e4b"
         },
         "general": {
             "model": "ollama/nemotron-cascade-2:30b"
@@ -24,8 +24,20 @@
     "mcp": {
         "context7": {
             "enabled": true,
+            "headers": {
+                "CONTEXT7_API_KEY": "ctx7sk-8a37a0e0-a193-40c0-8a6f-ee35468b7d35"
+            },
             "type": "remote",
             "url": "https://mcp.context7.com/mcp"
+        },
+        "excel": {
+            "command": [
+                "uvx",
+                "excel-mcp-server",
+                "stdio"
+            ],
+            "enabled": true,
+            "type": "local"
         },
         "fetch": {
             "command": [
@@ -40,7 +52,8 @@
                 "-y",
                 "@modelcontextprotocol/server-filesystem",
                 "/home/gustavo/.opencode",
-                "/home/gustavo/depots/github"
+                "/home/gustavo/depots/github",
+                "/home/gustavo/proj"
             ],
             "enabled": true,
             "type": "local"
@@ -107,6 +120,14 @@
                     },
                     "name": "GLM 4.7 Flash (30b)"
                 },
+                "gemma4:e4b": {
+                    "cost": {
+                        "cache_read": 0.1,
+                        "input": 0.03,
+                        "output": 0.15
+                    },
+                    "name": "Gemma 4 (e4b)"
+                },
                 "gemma4:26b": {
                     "cost": {
                         "cache_read": 0.1,
@@ -115,7 +136,7 @@
                     },
                     "name": "Gemma 4 (26b)"
                 },
-                "ollama/gemma4:31b": {
+                "gemma4:31b": {
                     "cost": {
                         "cache_read": 0.1,
                         "input": 0.03,
@@ -147,5 +168,5 @@
             }
         }
     },
-    "small_model": "ollama/ollama/phi4-reasoning:14b"
+    "small_model": "ollama/phi4-reasoning:14b"
 }
