@@ -19,7 +19,7 @@
         "ollama"
     ],
     "instructions": [
-        "AGENTS.md"
+        "AGENTS.md",
         "rules/*.md",
     ],
     "mcp": {
@@ -52,9 +52,11 @@
                 "npx",
                 "-y",
                 "@modelcontextprotocol/server-filesystem",
-                "/home/gustavo/.opencode",
-                "/home/gustavo/depots/github",
-                "/home/gustavo/proj"
+                "/home/gustavo/.config/opencode/",
+                "/home/gustavo/.opencode/",
+                "/home/gustavo/depots/worktrees/",
+                "/home/gustavo/depots/gitlab/",
+                "/home/gustavo/proj/"
             ],
             "enabled": true,
             "type": "local"
