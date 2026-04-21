@@ -19,7 +19,8 @@
         "ollama"
     ],
     "instructions": [
-        "rules/*.md"
+        "AGENTS.md"
+        "rules/*.md",
     ],
     "mcp": {
         "context7": {
